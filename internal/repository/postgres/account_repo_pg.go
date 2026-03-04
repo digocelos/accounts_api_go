@@ -95,7 +95,7 @@ func (r *AccountRepo) UpdateWithOptimisticLock(ctx context.Context, id string, e
 			// Could be not found or conflict; we'll differentiate:
 			_, getErr := r.GetById(ctx, id)
 			if getErr != nil {
-				return account.Account{}, account.ErrConfict
+				return account.Account{}, account.ErrConflict
 			}
 			if errors.Is(err, account.ErrNotFound) {
 				return account.Account{}, account.ErrNotFound
